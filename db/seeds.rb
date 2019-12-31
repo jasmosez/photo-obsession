@@ -24,7 +24,7 @@ Post.create(img_url: "https://ca.slack-edge.com/T02MD9XTF-UNX1T44NQ-347b781241f1
 Post.create(img_url: "https://ca.slack-edge.com/T02MD9XTF-UPMCZ4DA9-97cc68f2f97d-512", user_id: u4.id)
 Post.create(img_url: "https://ca.slack-edge.com/T02MD9XTF-UQ32T8ZGA-1d8b246a8aff-512", user_id: u5.id)
 
-byebug
+
 
 Comment.create(user_id: User.all.sample.id, post_id: Post.all.sample.id, content: "Wow!")
 Comment.create(user_id: User.all.sample.id, post_id: Post.all.sample.id, content: "Neat!")

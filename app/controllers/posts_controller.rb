@@ -2,6 +2,7 @@ class PostsController < ApplicationController
 
     def index
         @posts = Post.all
+
         @user = current_user
         @comment = Comment.new
         # @likes = Like.all
@@ -10,6 +11,7 @@ class PostsController < ApplicationController
 
     def show
         @post = Post.find(params[:id])
+
         @user = current_user
         @comment = Comment.new
     end
