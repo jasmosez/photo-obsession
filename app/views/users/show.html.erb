@@ -1,0 +1,15 @@
+<h1><%= @user.username %>'s Profile</h1>
+
+<% @user.my_authored_posts.each do |p| %>
+    <%= image_tag(p.img_url) %>
+    <br>
+    <%= pluralize(p.total_likes, "like") %>
+    <% p.comments.each do |c| %>
+        <li><%= link_to c.user.username, user_path(c.user) %> <%= "said #{c.content}" %></li>
+    <% end %>
+        <br>
+        <hr>
+    <% end %>
+
+    <%= button_to "Update Profile", edit_user_path(@user), method: :get %>
+    <%= button_to "Delete Profile", user_path(@user), method: :delete %>

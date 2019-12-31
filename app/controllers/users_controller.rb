@@ -10,13 +10,11 @@ class UsersController < ApplicationController
     end
 
     def create
-        byebug
         @user = User.create(user_params)
         redirect_to '/login'
     end
 
     def edit
-
     end
 
     def update

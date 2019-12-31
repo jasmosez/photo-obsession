@@ -11,4 +11,8 @@ class User < ApplicationRecord
     has_many :idols, through: :active_relationships, source: :idol
     has_many :passive_relationships, class_name: "Obsession", foreign_key: :idol_id, dependent: :destroy
     has_many :fans, through: :passive_relationships, source: :fan
+
+    def my_authored_posts
+        self.posts.select {|p| p.user_id == self.id}
+    end
 end
