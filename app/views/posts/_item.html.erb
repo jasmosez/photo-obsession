@@ -1,7 +1,4 @@
-<h1>Obsessions Development Index</h1>
 
-<% @posts.each do |p| %>
-    
   <%# SHOW USER AND POST IMAGE %>
     <h3><%= p.user.username %></h3>
     <%= image_tag(p.img_url) %><br>
@@ -36,4 +33,3 @@
         <%= f.submit "Add Comment" %>
     <% end %>
     <br><hr>
-<% end %>
