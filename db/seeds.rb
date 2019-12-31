@@ -11,12 +11,12 @@ Comment.destroy_all
 Post.destroy_all
 User.destroy_all
 
-User.create(username: "Maddy")
-User.create(username: "James")
-User.create(username: "Alex")
-User.create(username: "Natalie")
-User.create(username: "Kevin")
-User.create(username: "Tim")
+User.create(username: "Maddy", password: "111", password_confirmation: "111")
+User.create(username: "James", password: "222", password_confirmation: "222")
+User.create(username: "Alex", password: "333", password_confirmation: "333")
+User.create(username: "Natalie", password: "444", password_confirmation: "444")
+User.create(username: "Kevin", password: "555", password_confirmation: "555")
+User.create(username: "Tim", password: "666", password_confirmation: "666")
 
 Post.create(img_url: "https://ca.slack-edge.com/T02MD9XTF-UQ32TAFUJ-8dc8eda88489-512", user_id: User.all.sample.id)
 Post.create(img_url: "https://ca.slack-edge.com/T02MD9XTF-UQJ2R94EA-0d4d26671dd9-512", user_id: User.all.sample.id)

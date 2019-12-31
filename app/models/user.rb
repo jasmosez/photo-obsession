@@ -13,6 +13,6 @@ class User < ApplicationRecord
     has_many :fans, through: :passive_relationships, source: :fan
 
     def my_authored_posts
-        self.posts.select {|p| p.user_id == self.id}
+        Post.all.select {|p| p.user_id == self.id}  
     end
 end
