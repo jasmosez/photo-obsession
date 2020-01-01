@@ -1,10 +1,10 @@
 class LikesController < ApplicationController
 
     def create
-        @user = current_user
+        # @current_user = current_user
         @post = params[:id]
-        likes = {user_id: @user, post_id: @post}
-        @like = Like.create(likes)
+        like_params = {user_id: current_user.id, post_id: @post}
+        @like = Like.create(like_params)
         
         redirect_to posts_path
  

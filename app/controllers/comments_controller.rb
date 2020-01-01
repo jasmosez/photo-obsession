@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
 
   def edit
     @post = Post.find(@comment.post_id)
-    @user = current_user
+    @current_user = current_user
   end
 
   def update

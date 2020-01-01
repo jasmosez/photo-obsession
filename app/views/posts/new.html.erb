@@ -1,7 +1,7 @@
-<h1>Create New Post for <%= @user.username %></h1>
+<h1>Create New Post for <%= @current_user.username %></h1>
 
 <%= form_for @post do |f| %>
-  <%= f.hidden_field(:user_id, value: @user.id) %>
+  <%= f.hidden_field(:user_id, value: @current_user.id) %>
   <%= f.label :img_url %>
   <%= f.text_field :img_url %>
   <%= f.submit "Post!" %>

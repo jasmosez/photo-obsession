@@ -1,12 +1,12 @@
-<h1><%= @user.username %>'s Profile</h1>
+<h1><%= @current_user.username %>'s Profile</h1>
 
 <% @posts.each do |p| %>
        <%= render '/posts/item', :p => p %>
-       <%= render '/comments/comments_show', :p => p, :@current_user => @user %>
+       <%= render '/comments/comments_show', :p => p %>
        <br><hr>
 <% end %>
 
 
     <%= button_to "Create New Post", new_post_path(@post), method: :get %>
-    <%= button_to "Update Profile", edit_user_path(@user), method: :get %>
-    <%= button_to "Delete Profile", user_path(@user), method: :delete %>
+    <%= button_to "Update Profile", edit_user_path(@current_user), method: :get %>
+    <%= button_to "Delete Profile", user_path(@current_user), method: :delete %>

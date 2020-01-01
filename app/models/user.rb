@@ -18,7 +18,6 @@ class User < ApplicationRecord
     end
 
     def my_idols_posts
-        byebug
         posts = []
         self.idols.each do |idol|
             posts << idol.my_authored_posts

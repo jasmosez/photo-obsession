@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :find_user, only: [:show, :edit, :update, :destroy]
+    before_action :find_current_user, only: [:show, :edit, :update, :destroy]
 
     def new
         @user = User.new
@@ -8,26 +8,27 @@ class UsersController < ApplicationController
     
     def show
         @posts = @user.my_authored_posts
-        @current_user = User.find(current_user)
+        @user = User.find(params[:id])
         @comment = Comment.new
     end
 
     def create
-        @user = User.create(user_params)
+        User.create(user_params)
         redirect_to '/login'
     end
 
     def edit
-
+        # This assignment is to allow us to user the same for as the NEW action
+        @user = @current_user
     end
 
     def update
-        @user.update(user_params)
-        redirect_to user_path(@user)
+        @current_user.update(user_params)
+        redirect_to user_path(@current_user)
     end
 
     def destroy
-        @user.destroy
+        @current_user.destroy
         redirect_to '/login' #!!
     end
      
@@ -37,7 +38,7 @@ class UsersController < ApplicationController
         params.require(:user).permit(:username, :password, :password_confirmation)
     end
 
-    def find_user
-        @user = User.find(params[:id])
+    def find_current_user
+        @current_user = current_user
     end
 end
