@@ -7,6 +7,8 @@ class UsersController < ApplicationController
     
     
     def show
+        @comment = Comment.new
+        #@current_user = User.find(current_user)
     end
 
     def create
@@ -25,9 +27,21 @@ class UsersController < ApplicationController
 
     def destroy
         @user.destroy
-        redirect_to '/login' #!!
+        redirect_to '/login' 
+    end
+
+    def follow
+        @user = User.find(params[:id])
+        User.find(current_user).idols << @user
+        redirect_to user_path(@user)
     end
      
+    def unfollow
+        @user = User.find(params[:id]) 
+        Obsession.find_by(fan_id: current_user, idol_id: @user.id).destroy
+        redirect_to user_path(@user)
+    end
+
     private
      
     def user_params

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :users, except: :index
   post '/posts/:id/like', to: "likes#create", as: "create_like"
   delete '/posts/:id/like', to: "likes#destroy", as: "delete_like"
+  post '/users/:id/follow', to: "users#follow", as: "follow_user"
+  post '/users/:id/unfollow', to: "users#unfollow", as: "unfollow_user"
   get '/', to: "sessions#show"
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
