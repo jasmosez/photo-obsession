@@ -7,8 +7,8 @@ class UsersController < ApplicationController
     
     
     def show
-        @posts = @user.my_authored_posts
         @user = User.find(params[:id])
+        @posts = @user.my_authored_posts
         @comment = Comment.new
     end
 
