@@ -1,7 +1,8 @@
 <%# SHOW COMMENT THREAD %>
     <% p.comments.each do |c| %>
         <li>
-            <%= "#{c.user.username} said #{c.content}" %>
+            <%= link_to c.user.username, user_path(c.user) %>
+            <%= "said #{c.content}" %>
             <% if c.user.id == @current_user.id %>
                 <%= " | " %>
                 <%=link_to("Edit", edit_comment_path(c)) %>
