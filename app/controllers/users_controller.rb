@@ -7,6 +7,9 @@ class UsersController < ApplicationController
     
     
     def show
+        @posts = @user.my_authored_posts
+        @current_user = User.find(current_user)
+        @comment = Comment.new
     end
 
     def create

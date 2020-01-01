@@ -17,4 +17,15 @@ class User < ApplicationRecord
         Post.all.select {|p| p.user_id == self.id}  
     end
 
+    def my_idols_posts
+        byebug
+        posts = []
+        self.idols.each do |idol|
+            posts << idol.my_authored_posts
+        end
+        posts.flatten.sort {|a,b| b.created_at <=> a.created_at}
+        # posts.uniq # to control for bad seed data in which a user idolizes another user more than once
+    end
+
+
 end
