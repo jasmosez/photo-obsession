@@ -1,5 +1,18 @@
 <h1><%= @user.username %>'s Profile</h1>
 
+<p>Fans: <%= @user.fans.count %></p>    
+<p>Idols: <%= @user.idols.count %></p>
+
+<%# FOLLOW (OBESS) BUTTON NEEDS WORK!! %>
+<% if session[:user_id] == @user.id %>
+
+<% elsif User.find(session[:user_id]).idols.include?(@user) %>
+    <%= button_to "Detach From", unfollow_user_path(@user), method: :post %>
+<% else %>
+    <%= button_to "Obsess Over", follow_user_path(@user), method: :post %>
+<% end %>
+
+
 <% @posts.each do |p| %>
        <%= render '/posts/item', :p => p %>
        <%= render '/comments/comments_show', :p => p %>

@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :users, except: :index
   get '/signup', to: "users#new"
   post '/signup', to: "users#create"
+  post '/users/:id/follow', to: "users#follow", as: "follow_user"
+  post '/users/:id/unfollow', to: "users#unfollow", as: "unfollow_user"
+  
   
   get '/', to: "sessions#show", as: 'dashboard'
   get '/login', to: "sessions#new"
