@@ -11,7 +11,7 @@ class Post < ApplicationRecord
 
     def like?(current_user)
         self.likes.find do |like|
-            like.user_id == current_user
+            like.user_id == current_user.id
         end
     end
 end

@@ -1,0 +1,21 @@
+<%# SHOW COMMENT THREAD %>
+<%# Render form for current comment, if it was created by current_user %>
+<% @post.comments.each do |c| %>
+  <% if c.id == @comment.id && c.user.id == @current_user.id %>
+    <li>
+      <%= form_for(c, method: "PATCH", url: comment_path(c)) do |f| %>
+          <%= f.hidden_field(:post_id, value: @post.id) %>
+          <%= f.hidden_field(:user_id, value: @current_user.id) %>
+          <%= f.text_area :content %>
+          <%= f.submit "Edit Comment" %>
+      <% end %>
+      <%= button_to("Delete Comment", {action: "destroy"}, {method: :delete}) %>
+    </li>
+  <% else %>
+    <li>
+      <%= "#{c.user.username} said #{c.content}" %>
+    </li>
+  <% end %>
+<% end %>
+
+<%# DON'T INCLUDE "ADD NEW COMMENT" FUNCTIONALITY %>

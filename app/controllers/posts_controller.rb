@@ -2,27 +2,25 @@ class PostsController < ApplicationController
 
     def index
         @posts = Post.all
-
-        @user = current_user
         @comment = Comment.new
+        @current_user = current_user
+
         # @likes = Like.all
         # @comments = Comment.all
     end
 
     def show
         @post = Post.find(params[:id])
-
-        @user = current_user
         @comment = Comment.new
+        @current_user = current_user
     end
 
     def new
         @post = Post.new
-        @user = User.find(current_user)
+        @current_user = current_user
     end
 
     def create
-        #byebug
         post = Post.create(post_params)
         redirect_to(post_path(post))
     end
