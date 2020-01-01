@@ -4,6 +4,8 @@ class PostsController < ApplicationController
         @posts = Post.all
         @comment = Comment.new
         @current_user = current_user
+        session[:last_view] = "posts#index"
+        session[:last_view_id] = nil
 
         # @likes = Like.all
         # @comments = Comment.all
@@ -13,6 +15,8 @@ class PostsController < ApplicationController
         @post = Post.find(params[:id])
         @comment = Comment.new
         @current_user = current_user
+        session[:last_view] = "posts#show"
+        session[:last_view_id] = @post.id
     end
 
     def new

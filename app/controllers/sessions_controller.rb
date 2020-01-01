@@ -9,6 +9,8 @@ class SessionsController < ApplicationController
         @current_user = current_user
         @posts = current_user.my_idols_posts
         @comment = Comment.new
+        session[:last_view] = "sessions#show"
+        session[:last_view_id] = nil
                 
     end
     
