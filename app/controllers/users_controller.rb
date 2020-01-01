@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
     before_action :find_current_user, only: [:show, :edit, :update, :destroy]
 
+    def index
+        session[:last_view] = "users#index"
+        session[:last_view_id] = nil
+    end
+    
     def new
         @user = User.new
     end
@@ -10,6 +15,8 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         @posts = @user.my_authored_posts
         @comment = Comment.new
+        session[:last_view] = "users#show"
+        session[:last_view_id] = @user.id
     end
 
     def create
@@ -33,12 +40,16 @@ class UsersController < ApplicationController
     end
 
     def follow
+        #will add follow/unfollow functionality to user index - will need to redirect_to user index. 
+        #come back to this 
         @user = User.find(params[:id])
         current_user.idols << @user
         redirect_to user_path(@user)
     end
      
     def unfollow
+         #will add follow/unfollow functionality to user index - will need to redirect_to user index. 
+        #come back to this 
         @user = User.find(params[:id]) 
         Obsession.find_by(fan_id: current_user, idol_id: @user.id).destroy
         redirect_to user_path(@user)

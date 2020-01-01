@@ -6,7 +6,8 @@ class LikesController < ApplicationController
         like_params = {user_id: current_user.id, post_id: @post}
         @like = Like.create(like_params)
         
-        redirect_to posts_path
+        
+        redirect_to redirect_helper
  
     end 
 
@@ -15,7 +16,8 @@ class LikesController < ApplicationController
         @like = Post.find(params[:id]).like?(current_user)
         @like.destroy
         
-        redirect_to posts_path
+        redirect_to redirect_helper
  
     end
+
 end
