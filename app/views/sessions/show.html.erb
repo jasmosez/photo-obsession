@@ -1,1 +1,7 @@
-<h1>Login Success</h1>
+<h1>Welcome <%= @current_user.username %></h1>
+
+<% @posts.each do |p| %>
+       <%= render '/posts/item', :p => p %>
+       <%= render '/comments/comments_show', :p => p %>
+       <br><hr>
+<% end %>

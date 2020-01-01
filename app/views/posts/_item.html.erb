@@ -1,35 +1,15 @@
-
-  <%# SHOW USER AND POST IMAGE %>
-    <h3><%= p.user.username %></h3>
-    <%= image_tag(p.img_url) %><br>
+ <%# SHOW USER AND POST IMAGE %>
+    <h3><%= link_to p.user.username, user_path(p.user) %></h3>
+    <%= link_to image_tag(p.img_url), post_path(p) %><br>
     
     <%# RENDER LIKE or UNLIKE BUTTON %>
-    <% if p.like?(@user) %>
-        <%= button_to "Unlike", delete_like_path(p), method: :delete %>
-    <% else %>
-        <%= button_to "Like", create_like_path(p), method: :post %>
+    <% if p.user != @current_user %>
+        <% if p.like?(@current_user) %>
+            <%= button_to "Unlike", delete_like_path(p), method: :delete %>
+        <% else %>
+            <%= button_to "Like", create_like_path(p), method: :post %>
+        <% end %>
     <% end %>
 
     <%# SHOW EXISTING LIKES %>
     <%= pluralize(p.total_likes, "like") %>
-    
-    <%# SHOW COMMENT THREAD %>
-    <% p.comments.each do |c| %>
-        <li>
-            <%= "#{c.user.username} said #{c.content}" %>
-            <% if c.user.id == @user %>
-                <%= " | " %>
-                <%=link_to("Edit", edit_comment_path(c)) %>
-            <% end %>
-        </li>
-    <% end %>
-    
-    <%# ADD NEW COMMENT %>
-    <p>Add Comment</p>
-    <%= form_for(@comment, method: "POST", url: comments_path) do |f| %>
-        <%= f.hidden_field(:post_id, value: p.id) %>
-        <%= f.hidden_field(:user_id, value: @user) %>
-        <%= f.text_area :content %>
-        <%= f.submit "Add Comment" %>
-    <% end %>
-    <br><hr>

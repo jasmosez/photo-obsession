@@ -1,15 +1,13 @@
 <h1><%= @user.username %>'s Profile</h1>
-<% @user.my_authored_posts.each do |p| %>
-    <%= image_tag(p.img_url) %>
-    <br>
-    <%= pluralize(p.total_likes, "like") %>
-    <% p.comments.each do |c| %>
-        <li><%= link_to c.user.username, user_path(c.user) %> <%= "said #{c.content}" %></li>
-    <% end %>
-        <br>
-        <hr>
-    <% end %>
 
+<% @posts.each do |p| %>
+       <%= render '/posts/item', :p => p %>
+       <%= render '/comments/comments_show', :p => p %>
+       <br><hr>
+<% end %>
+
+<% if @user == @current_user %>
     <%= button_to "Create New Post", new_post_path(@post), method: :get %>
-    <%= button_to "Update Profile", edit_user_path(@user), method: :get %>
-    <%= button_to "Delete Profile", user_path(@user), method: :delete %>
+    <%= button_to "Update Profile", edit_user_path(@current_user), method: :get %>
+    <%= button_to "Delete Profile", user_path(@current_user), method: :delete %>
+<% end %>
