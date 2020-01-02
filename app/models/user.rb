@@ -26,5 +26,41 @@ class User < ApplicationRecord
         # posts.uniq # to control for bad seed data in which a user idolizes another user more than once
     end
 
+    def total_likes 
+        total_likes = []
+        self.my_authored_posts.each do |p| 
+            total_likes << p.likes.count 
+        end
+        total_likes.sum
+    end
+
+    def total_posts 
+        self.my_authored_posts.count
+    end
+
+    def most_liked_post
+        most_liked_post = self.my_authored_posts.max do |a, b| 
+            a.likes.length <=> b.likes.length 
+        end 
+    end
+
+    def most_commented_post 
+        most_commented_post = self.my_authored_posts.max do |a, b|
+            a.comments.length <=> b.comments.length
+        end
+    end 
+
+    # def common_idols
+    #     results = []
+    #     #byebug
+    #     User.all.each do |u|
+    #         u.idols.each do |i| 
+    #             if self.idols.find(i.id)
+    #                 results << i
+    #             end
+    #         end
+    #     end
+    #     results
+    # end 
 
 end
