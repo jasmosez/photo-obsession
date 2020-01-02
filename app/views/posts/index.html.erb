@@ -2,6 +2,11 @@
 
 <h1>Obsessions Development Index</h1>
 
+<%= form_tag "/posts/sort", method: "POST" do %>
+  <%= select_tag "sort_choice", options_for_select(@sort_options, @preset) %>
+  <%= submit_tag("Submit") %>
+<% end %>
+
 <% @posts.each do |p| %>
        <%= render '/posts/item', :p => p %>
        <%= render '/comments/comments_show', :p => p %>

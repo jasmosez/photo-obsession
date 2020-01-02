@@ -3,14 +3,26 @@ class PostsController < ApplicationController
     before_action :find_post, only: [:show, :edit, :update, :destroy]
 
     def index
-        @posts = Post.all
+        
+        # Establish default for sort_choice
+        default = "Recent"
+
+        # set sort_choice to default if it doesn't already exist
+        params[:sort_choice] = default if !params[:sort_choice]
+        
+        # sort @posts and set preset based on sort_choice
+        @posts = Post.sort_index(params[:sort_choice])
+        @preset = params[:sort_choice]
+    
+        # pass other necessary instance variables to the view
+        @sort_options = Post.sort_options    
         @comment = Comment.new
         @current_user = current_user
+
+        # set last_view
         session[:last_view] = "posts#index"
         session[:last_view_id] = nil
 
-        # @likes = Like.all
-        # @comments = Comment.all
     end
 
     def show
