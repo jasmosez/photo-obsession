@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
     end
     
     def new
+        render :layout => "no_menu"
     end 
 
     def create
