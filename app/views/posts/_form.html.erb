@@ -1,0 +1,8 @@
+<%= form_for @post do |f| %>
+    <%= f.hidden_field(:user_id, value: @current_user.id) %>
+    <%= f.label :img_url %>
+    <%= f.text_field :img_url %><br>
+    <%= f.label :caption %>
+    <%= f.text_field :caption %><br>
+    <%= f.submit "Post!" %>
+  <% end %>
