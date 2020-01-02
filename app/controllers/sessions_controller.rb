@@ -1,17 +1,21 @@
 class SessionsController < ApplicationController
 
+    skip_before_action :require_login, :set_nav_variables, only: [:show, :new, :create, :destroy]
+
     def show
-       
         if !session[:user_id]
+            # puts "HELLOOOOOOOO"
             redirect_to login_path
+        else 
+            @current_user = current_user
+            @posts = current_user.my_idols_posts
+            @comment = Comment.new
+            session[:last_view] = "sessions#show"
+            session[:last_view_id] = nil
+            
+        set_nav_variables
         end
         
-        @current_user = current_user
-        @posts = current_user.my_idols_posts
-        @comment = Comment.new
-        session[:last_view] = "sessions#show"
-        session[:last_view_id] = nil
-                
     end
     
     def new
@@ -33,9 +37,8 @@ class SessionsController < ApplicationController
     end
 
 
-
     def destroy
-        session.delete :username
+        session.delete :user_id
         redirect_to login_path
     end
 end 

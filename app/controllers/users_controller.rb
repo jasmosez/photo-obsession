@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
+    skip_before_action :require_login, :set_nav_variables, only: [:new, :create]
     before_action :find_current_user, only: [:show, :edit, :update, :destroy]
+
 
     def index
         session[:last_view] = "users#index"
@@ -22,7 +24,6 @@ class UsersController < ApplicationController
     end
 
     def create
-        byebug
         user = User.create(user_params)
         if user.valid?
             redirect_to login_path
