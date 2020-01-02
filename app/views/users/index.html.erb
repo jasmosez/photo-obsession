@@ -1,3 +1,44 @@
 <%= render '/nav/main' %>
 
 <h1> USER INDEX </h1>
+
+<%# LIST USERS %>
+<ul>
+    <% @users.each do |u| %>
+            <li><%= link_to u.username, user_path(u) %> 
+
+        <%#  FOLLOW/UNFOLLOW BUTTON %>
+            <% if session[:user_id] == u.id %>
+
+            <% elsif User.find(session[:user_id]).idols.include?(u) %>
+            <%= button_to "Detach From", unfollow_user_path(u), method: :post %>
+            <% else %>
+            <%= button_to "Obsess Over", follow_user_path(u), method: :post %>
+            <% end %></li>
+
+        <%# TOTAL NO. OF LIKES%>
+            Total # of likes: 
+            <%= u.total_likes %><br>
+
+        <%# TOTAL POSTS %>
+            Total posts:
+            <%= u.total_posts %><br>
+
+        <%# MOST LIKED POST %>
+        <%= link_to "Most liked Post", post_path(u.most_liked_post) %><br>
+
+
+        <%# MOST COMMENTED ON POST %>
+        <%= link_to "Most Commented On Post", post_path(u.most_commented_post) %><br>
+        <br>
+
+        <%# SHARED IDOLS %>
+        <%# u.common_idols %>
+    <% end %>
+
+</ul>
+
+
+
+
+
