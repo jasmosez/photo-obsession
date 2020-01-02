@@ -1,13 +1,13 @@
 class ApplicationController < ActionController::Base
-
-    before_action :set_nav_variables
+    
+    before_action :require_login , :set_nav_variables
     
     def set_nav_variables
         @current_user = current_user
     end
 
     def current_user
-        User.find(session[:user_id])
+        # User.find(session[:user_id])
     end
 
     # def last_view
@@ -34,6 +34,12 @@ class ApplicationController < ActionController::Base
             return dashboard_path
         end
     
+    end
+
+    private
+
+    def require_login
+        return head(:forbidden) unless session.include? :user_id
     end
 
 end

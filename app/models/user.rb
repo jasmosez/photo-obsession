@@ -12,7 +12,7 @@ class User < ApplicationRecord
     has_many :passive_relationships, class_name: "Obsession", foreign_key: :idol_id, dependent: :destroy
     has_many :fans, through: :passive_relationships, source: :fan
 
-
+    
     def my_authored_posts
         Post.all.select {|p| p.user_id == self.id}  
     end
