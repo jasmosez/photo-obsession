@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post '/posts/:id/like', to: "likes#create", as: "create_like"
   delete '/posts/:id/like', to: "likes#destroy", as: "delete_like"
   
-  resources :users, except: :index
+  resources :users
   get '/signup', to: "users#new"
   post '/signup', to: "users#create"
   post '/users/:id/follow', to: "users#follow", as: "follow_user"

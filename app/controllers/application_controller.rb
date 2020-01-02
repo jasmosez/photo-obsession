@@ -1,5 +1,11 @@
 class ApplicationController < ActionController::Base
 
+    before_action :set_nav_variables
+    
+    def set_nav_variables
+        @current_user = current_user
+    end
+
     def current_user
         User.find(session[:user_id])
     end
