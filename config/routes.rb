@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :comments, only: [:create, :edit, :update, :destroy]
   
   resources :posts
-  post '/posts/sort', to: 'posts#index'
+  patch '/posts', to: 'posts#index'
   post '/posts/:id/like', to: "likes#create", as: "create_like"
   delete '/posts/:id/like', to: "likes#destroy", as: "delete_like"
   

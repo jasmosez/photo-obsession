@@ -3,16 +3,24 @@ class PostsController < ApplicationController
     before_action :find_post, only: [:show, :edit, :update, :destroy]
 
     def index
-        
         # Establish default for sort_choice
         default = "Recent"
+        
 
-        # set sort_choice to default if it doesn't already exist
-        params[:sort_choice] = default if !params[:sort_choice]
+        # store sort_choice in session, if it exists
+        # store default in session, if no session[sort_choice] exists
+        # otherwise, just use what's already in session
+        if params[:sort_choice] 
+           session[:sort_choice] = params[:sort_choice]
+        else
+            if !session[:sort_choice]
+                session[:sort_choice] = default
+            end
+        end
         
         # sort @posts and set preset based on sort_choice
-        @posts = Post.sort_index(params[:sort_choice])
-        @preset = params[:sort_choice]
+        @posts = Post.sort_index(session[:sort_choice])
+        @preset = session[:sort_choice]
     
         # pass other necessary instance variables to the view
         @sort_options = Post.sort_options    
@@ -22,7 +30,7 @@ class PostsController < ApplicationController
         # set last_view
         session[:last_view] = "posts#index"
         session[:last_view_id] = nil
-
+        
     end
 
     def show
