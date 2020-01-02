@@ -21,8 +21,14 @@ class UsersController < ApplicationController
     end
 
     def create
-        User.create(user_params)
-        redirect_to login_path
+        byebug
+        user = User.create(user_params)
+        if user.valid?
+            redirect_to login_path
+        else
+            flash[:messages] = ["Something went wrong"]
+            redirect_to signup_path
+        end
     end
 
     def edit

@@ -1,5 +1,14 @@
 <h1>Welcome and Login</h1>
 
+
+<% if flash[:messages] %>
+  <% flash[:messages].each do |message| %>
+    <div class="error_message">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
 <%= form_with url: '/login' do |f| %>
     <%= f.label :username %>
     <%= f.text_field :username %>
