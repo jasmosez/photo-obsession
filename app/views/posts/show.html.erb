@@ -1,2 +1,7 @@
 <%= render '/posts/item', :p => @post %>
 <%= render '/comments/comments_show', :p => @post %>
+
+<%# byebug %>
+<% if @user == @current_user %>
+<%= button_to "Edit Post", edit_post_path(@post), method: :get %>
+<% end %>

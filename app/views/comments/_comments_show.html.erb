@@ -1,4 +1,5 @@
 <%# SHOW COMMENT THREAD %>
+    <p><%= pluralize(p.comments.count, "comment") %></p>
     <% p.comments.each do |c| %>
         <li>
             <%= link_to c.user.username, user_path(c.user) %>

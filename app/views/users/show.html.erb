@@ -12,6 +12,8 @@
     <%= button_to "Obsess Over", follow_user_path(@user), method: :post %>
 <% end %>
 
+<p>Bio: <%= @user.bio %></p>
+
 
 <% @posts.each do |p| %>
        <%= render '/posts/item', :p => p %>

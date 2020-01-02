@@ -1,6 +1,7 @@
  <%# SHOW USER AND POST IMAGE %>
     <h3><%= link_to p.user.username, user_path(p.user) %></h3>
     <%= link_to image_tag(p.img_url), post_path(p) %><br>
+    <%= p.caption %><br>
     
     <%# RENDER LIKE or UNLIKE BUTTON %>
     <% if p.user != @current_user %>
