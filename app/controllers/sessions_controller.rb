@@ -23,7 +23,6 @@ class SessionsController < ApplicationController
     end 
 
     def create
-
         user = User.find_by(username: params[:username])
         authenticated = user.try(:authenticate, params[:password])
         if authenticated

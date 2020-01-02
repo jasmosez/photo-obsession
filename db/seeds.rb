@@ -14,11 +14,11 @@ Comment.destroy_all
 Post.destroy_all
 User.destroy_all
 
-u1 = User.create(username: "Maddy", password: "123", bio: Faker::GreekPhilosophers.quote)
-u2 = User.create(username: "James", password: "123", bio: Faker::GreekPhilosophers.quote)
-u3 = User.create(username: "Tim", password: "123", bio: Faker::GreekPhilosophers.quote)
-u4 = User.create(username: "Kevin", password: "123", bio: Faker::GreekPhilosophers.quote)
-u5 = User.create(username: "Alex", password: "123", bio: Faker::GreekPhilosophers.quote)
+u1 = User.create(username: "Maddy", password: "123", bio: Faker::GreekPhilosophers.quote, avatar: Faker::Avatar.image)
+u2 = User.create(username: "James", password: "123", bio: Faker::GreekPhilosophers.quote, avatar: Faker::Avatar.image)
+u3 = User.create(username: "Tim", password: "123", bio: Faker::GreekPhilosophers.quote, avatar: Faker::Avatar.image)
+u4 = User.create(username: "Kevin", password: "123", bio: Faker::GreekPhilosophers.quote, avatar: Faker::Avatar.image)
+u5 = User.create(username: "Alex", password: "123", bio: Faker::GreekPhilosophers.quote, avatar: Faker::Avatar.image)
 
 Post.create(img_url: "https://ca.slack-edge.com/T02MD9XTF-UQ32TAFUJ-8dc8eda88489-512", user_id: u1.id, caption: Faker::Movies::Lebowski.quote)
 Post.create(img_url: "https://ca.slack-edge.com/T02MD9XTF-UQJ2R94EA-0d4d26671dd9-512", user_id: u2.id, caption: Faker::Movies::Lebowski.quote)

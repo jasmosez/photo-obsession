@@ -1,5 +1,3 @@
-<%= render '/nav/main' %>
-
 <h1> USER INDEX </h1>
 
 <%# LIST USERS %>
@@ -17,20 +15,32 @@
             <% end %></li>
 
         <%# TOTAL NO. OF LIKES%>
-            Total # of likes: 
+            Total likes: 
             <%= u.total_likes %><br>
+            
 
         <%# TOTAL POSTS %>
             Total posts:
             <%= u.total_posts %><br>
+            
 
         <%# MOST LIKED POST %>
+        <% if u.most_liked_post == nil %>
+        No posts to like!
+        <br>
+        <% else %>
         <%= link_to "Most liked Post", post_path(u.most_liked_post) %><br>
+        <% end %>
 
 
         <%# MOST COMMENTED ON POST %>
+        <% if u.most_liked_post == nil %>
+        No posts to comment on!
+        <br>
+        <% else %>
         <%= link_to "Most Commented On Post", post_path(u.most_commented_post) %><br>
         <br>
+        <% end %>
 
         <%# SHARED IDOLS %>
         <%# u.common_idols %>
