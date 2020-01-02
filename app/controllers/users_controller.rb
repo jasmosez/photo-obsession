@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     def index
         session[:last_view] = "users#index"
         session[:last_view_id] = nil
+        @users = User.all 
     end
     
     def new
