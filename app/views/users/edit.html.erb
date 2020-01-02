@@ -3,3 +3,5 @@
 <h1>Update Your Profile</h1>
 
 <%= render 'form' %>
+
+<%= button_to "Delete Profile", user_path(@current_user), method: :delete %>
