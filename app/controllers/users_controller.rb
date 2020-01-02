@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     end
 
     def create
-        byebug
+        #byebug
         user = User.create(user_params)
         if user.valid?
             redirect_to login_path

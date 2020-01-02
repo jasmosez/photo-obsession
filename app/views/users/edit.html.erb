@@ -1,5 +1,15 @@
 <h1>Update Your Profile</h1>
 
-<%= render 'form' %>
+<%= form_for @user do |f| %>
+    <%= f.label :username %>
+    <%= f.text_field :username, required: true %><br>
+    <%= f.label :password %>
+    <%= f.password_field :password, required: true %><br>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, required: true %><br>
+    <%= f.label :bio %>
+    <%= f.text_field :bio %><br>
+    <%= f.submit %>
+  <% end %>
 
 <%= button_to "Delete Profile", user_path(@current_user), method: :delete %>
