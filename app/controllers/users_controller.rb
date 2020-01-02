@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
     def create
         User.create(user_params)
-        redirect_to '/login'
+        redirect_to login_path
     end
 
     def edit
@@ -32,12 +32,12 @@ class UsersController < ApplicationController
 
     def update
         @current_user.update(user_params)
-        redirect_to user_path(@current_user)
+        redirect_to redirect_helper
     end
 
     def destroy
         @current_user.destroy
-        redirect_to '/login' #!! 
+        redirect_to login_path 
     end
 
     def follow
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
         #come back to this 
         @user = User.find(params[:id])
         current_user.idols << @user
-        redirect_to user_path(@user)
+        redirect_to redirect_helper
     end
      
     def unfollow
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
         #come back to this 
         @user = User.find(params[:id]) 
         Obsession.find_by(fan_id: current_user, idol_id: @user.id).destroy
-        redirect_to user_path(@user)
+        redirect_to redirect_helper
     end
 
     private

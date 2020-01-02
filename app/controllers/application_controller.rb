@@ -24,10 +24,12 @@ class ApplicationController < ActionController::Base
             return posts_path
         when "posts#show"
             return post_path(instance)
-        when "users#show"
-            return user_path(instance)
+        
         when "users#index"
             return users_path
+        when "users#show"
+            return user_path(instance)
+        
         when "sessions#show"
             return dashboard_path
         end

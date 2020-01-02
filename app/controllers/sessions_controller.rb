@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     def show
        
         if !session[:user_id]
-            redirect_to '/login'
+            redirect_to login_path
         end
         
         @current_user = current_user
@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
 
         # return head(:forbidden) unless @user.authenticate(params[:password])
         session[:user_id] = user.id
-        redirect_to dashboard_path
+        redirect_to redirect_helper
     end
 
 

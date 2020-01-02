@@ -48,7 +48,7 @@ class PostsController < ApplicationController
 
     def create
         post = Post.create(post_params)
-        redirect_to(post_path(post))
+        redirect_to redirect_helper
     end
 
     def edit
@@ -57,12 +57,12 @@ class PostsController < ApplicationController
 
     def update
         @post.update(post_params)
-        redirect_to post_path(@post)
+        redirect_to redirect_helper
     end
     
     def destroy
         @post.destroy
-        redirect_to user_path(@post.user)
+        redirect_to redirect_helper
     end
 
     private
