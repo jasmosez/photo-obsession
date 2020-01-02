@@ -1,10 +1,10 @@
 <%= form_for @user do |f| %>
     <%= f.label :username %>
-    <%= f.text_field :username %><br>
+    <%= f.text_field :username, required: true %><br>
     <%= f.label :password %>
-    <%= f.password_field :password %><br>
+    <%= f.password_field :password, required: true %><br>
     <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %><br>
+    <%= f.password_field :password_confirmation, required: true %><br>
     <%= f.label :bio %>
     <%= f.text_field :bio %><br>
     <%= f.submit %>

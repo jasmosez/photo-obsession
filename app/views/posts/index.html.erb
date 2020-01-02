@@ -1,8 +1,7 @@
-<%= render '/nav/main' %>
-
 <h1>Obsessions Development Index</h1>
 
-<%= form_tag "/posts/sort", method: "POST" do %>
+<%= form_tag "/posts", method: "POST" do %>
+  <%= hidden_field_tag "_method", "patch" %>
   <%= select_tag "sort_choice", options_for_select(@sort_options, @preset) %>
   <%= submit_tag("Submit") %>
 <% end %>

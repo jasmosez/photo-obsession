@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   
   def create
     Comment.create(comment_params)
-    redirect_to posts_path
+    redirect_to redirect_helper
   end
 
   def edit
@@ -14,12 +14,12 @@ class CommentsController < ApplicationController
 
   def update
     @comment.update(comment_params)
-    redirect_to post_path(@comment.post)
+    redirect_to redirect_helper
   end
 
   def destroy
     @comment.destroy
-    redirect_to post_path(@comment.post)
+    redirect_to redirect_helper
   end
 
   private
