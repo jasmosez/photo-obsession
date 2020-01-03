@@ -1,21 +1,25 @@
+
 <%# SHOW COMMENT THREAD %>
-    <p><%= pluralize(p.comments.count, "comment") %></p>
+<div class="partial-wrapper">
+    <div><%# pluralize(p.comments.count, "comment") %></div>
     <% p.comments.each do |c| %>
-        <li>
+        <div>
             <%= link_to c.user.username, user_path(c.user) %>
             <%= "said #{c.content}" %>
             <% if c.user.id == @current_user.id %>
                 <%= " | " %>
-                <%=link_to("Edit", edit_comment_path(c)) %>
+                <%=link_to("Edit", edit_comment_path(c), class: "edit-link") %>
             <% end %>
-        </li>
+        </div>
     <% end %>
     
     <%# ADD NEW COMMENT %>
-    <p>Add Comment</p>
-    <%= form_for(@comment, method: "POST", url: comments_path) do |f| %>
-        <%= f.hidden_field(:post_id, value: p.id) %>
-        <%= f.hidden_field(:user_id, value: @current_user.id) %>
-        <%= f.text_area :content, required: true %>
-        <%= f.submit "Add Comment" %>
-    <% end %>
+    <div>
+        <%= form_for(@comment, method: "POST", url: comments_path) do |f| %>
+            <%= f.hidden_field(:post_id, value: p.id) %>
+            <%= f.hidden_field(:user_id, value: @current_user.id) %>
+            <%= f.text_area :content, required: true, class: "comment-box" %>
+            <%= f.submit "Add Comment", class: "btn btn-outline-primary" %>
+        <% end %>
+    </div>
+</div>

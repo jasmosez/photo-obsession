@@ -38,6 +38,9 @@ class SessionsController < ApplicationController
 
     def destroy
         session.delete :user_id
+        session.delete :sort_choice
+        session.delete :last_view
+    
         redirect_to login_path
     end
 end 

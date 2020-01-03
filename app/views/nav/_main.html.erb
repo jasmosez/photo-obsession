@@ -1,11 +1,13 @@
-    <%= link_to "Dashboard", dashboard_path %>
-    <%=" | "%>
-    <%= link_to "Explore Posts", posts_path %>
-    <%=" | "%>
-    <%= link_to "Explore Users", users_path %>
-    <%=" | "%>
-    <%= link_to "My Profile", user_path(@current_user) %>
-    <%=" | "%>
-    <%= link_to "Add Post", new_post_path %>
-    <%=" | "%>
-    <%= link_to "Logout", logout_path %>
+    <div id="main-nav">
+        <%= link_to "Dashboard", dashboard_path %>
+        <%=" | "%>
+        <%= link_to "Explore Posts", posts_path %>
+        <%=" | "%>
+        <%= link_to "Explore Users", users_path %>
+        <%=" | "%>
+        <%= link_to "My Profile", user_path(@current_user) %>
+        <%=" | "%>
+        <%= link_to "Add Post", new_post_path %>
+        <%=" | "%>
+        <%= link_to "Logout", logout_path %>
+    </div>

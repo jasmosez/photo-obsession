@@ -1,15 +1,100 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+* vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+* files in this directory. Styles in this file should be added after the last require_* statement.
+* It is generally better to create a new file per style scope.
+*
+*= require_tree .
+*= require_self
+*/
+
+a {
+  color: rgba(6, 214, 160, 1);
+}
+
+a:hover {
+  color: rgba(6, 214, 160, 1);
+}
+
+img.avatar {
+  width:50px;
+  height:50px;
+  border-radius: 50%;
+}
+
+.author {
+  /* font-weight: bold; */
+  font-size: 1.5em;
+  vertical-align: middle;
+}
+
+.btn-group {
+  display: inline-block;
+}
+
+.btn .btn-primary {
+  display: inline;
+}
+
+.caption {
+  font-style: italic;
+}
+
+.comment-box {
+  width: 540px;
+}
+
+.edit-link {
+  color: #0275d8;
+}
+
+.likes {
+  display: inline;
+  font-weight: bold;
+}
+
+.likes-row {}
+
+.partial-wrapper {
+  max-width: 540px;
+}
+
+.photo {
+  /* background-color: rgba(255, 0, 0, .1); */
+  max-height: 540px;
+}
+
+.photo-header {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#main-nav {
+  padding-left: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  
+  background-color: rgba(55, 57, 46, 1);
+  color: rgba(248, 255, 229, 1);
+  margin-left: 0px;
+  position: fixed;
+  width: 100%;
+}
+
+#main-nav a {
+  color: rgba(248, 255, 229, 1);
+}
+
+#content {
+  margin-left: 30px;
+  margin-right: 30px;
+
+  padding-block-start: 50px;
+}
+
