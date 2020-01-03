@@ -34,6 +34,13 @@ img.avatar {
   vertical-align: middle;
 }
 
+.avatar-big {
+  width:150px;
+  height:150px;
+  border-radius: 50%;
+}
+
+
 .btn-group {
   display: inline-block;
 }
@@ -73,6 +80,12 @@ img.avatar {
 .photo-header {
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+.user-profile-header {
+  padding-bottom: 5px;
+  color: rgba(6, 214, 160, 1);
+  font-size: 2em;
 }
 
 #main-nav {

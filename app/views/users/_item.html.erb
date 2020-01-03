@@ -1,16 +1,22 @@
  <%# SHOW POST IMAGE BUT NOT USER %>
 
-    <%= link_to image_tag(p.img_url), post_path(p) %><br>
-    <%= p.caption %><br>
+    <div class="photo">
+        <%= link_to image_tag(p.img_url, class: "img-thumbnail"), post_path(p) %>
+    </div>
+
+    <%#SHOW EXISTING LIKES AND CAPTION%>
+    <div>
+        <span class="likes"><%= pluralize(p.total_likes, "like") %></span>
+        <span class="caption"><%= p.caption %></span>
+    </div>
     
     <%# RENDER LIKE or UNLIKE BUTTON %>
-    <% if p.user != @current_user %>
-        <% if p.like?(@current_user) %>
-            <%= button_to "Unlike", delete_like_path(p), method: :delete %>
-        <% else %>
-            <%= button_to "Like", create_like_path(p), method: :post %>
+        <% if p.user != @current_user %>
+            <% if p.like?(@current_user) %>
+                <%= button_to "Unlike", delete_like_path(p), method: :delete, class: "btn btn-danger" %>
+            <% else %>
+                <%= button_to "Like", create_like_path(p), method: :post, class: "btn btn-primary"%>
+            <% end %>
         <% end %>
-    <% end %>
 
-    <%# SHOW EXISTING LIKES %>
-    <%= pluralize(p.total_likes, "like") %>
+   
