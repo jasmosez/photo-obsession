@@ -6,14 +6,14 @@ class SessionsController < ApplicationController
         if !session[:user_id]
             # puts "HELLOOOOOOOO"
             redirect_to login_path
-        else 
-            @current_user = current_user
+        else   
+            @current_user = current_user         
             @posts = current_user.my_idols_posts
             @comment = Comment.new
             session[:last_view] = "sessions#show"
             session[:last_view_id] = nil
-            
-        set_nav_variables
+                
+            set_nav_variables
         end
         
     end
@@ -27,7 +27,11 @@ class SessionsController < ApplicationController
         authenticated = user.try(:authenticate, params[:password])
         if authenticated
             session[:user_id] = user.id
-            redirect_to dashboard_path
+            if current_user.idols.none?
+                redirect_to posts_path
+            else
+                redirect_to dashboard_path
+            end
         else
             flash[:messages] = ["No Account with that Username and Password"]
             redirect_to login_path

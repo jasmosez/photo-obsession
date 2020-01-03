@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     
     def show
         @user = User.find(params[:id])
-        @posts = @user.my_authored_posts
+        @posts = @user.sort_authored_posts
         @comment = Comment.new
         session[:last_view] = "users#show"
         session[:last_view_id] = @user.id
