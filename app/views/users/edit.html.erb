@@ -1,20 +1,22 @@
 <h1>Update Your Profile</h1>
+<div class="partial-wrapper">
+  <%= form_for @user, class: "form-group" do |f| %>
+      <%= f.label :username %>
+      <%= f.text_field :username, required: true, class: "form-control" %><br>
+      <%= f.label :password %>
+      <%= f.password_field :password, required: true, class: "form-control" %><br>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, required: true, class: "form-control" %><br>
+      <hr>
+      <%= f.label :bio %>
+      <%= f.text_area :bio, class: "form-control" %><br>
+      
+      <%= f.label "Avatar URL" %>
+      <%= f.text_field :avatar, class: "form-control" %><br>
 
-<%= form_for @user do |f| %>
-    <%= f.label :username %>
-    <%= f.text_field :username, required: true %><br>
-    <%= f.label :password %>
-    <%= f.password_field :password, required: true %><br>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, required: true %><br>
-    <hr>
-    <%= f.label :bio %>
-    <%= f.text_field :bio %><br>
-    
-    <%= f.label "Avatar URL" %>
-    <%= f.text_field :avatar %><br>
+      <%= f.submit class: "btn btn-outline-primary"%>
+    <% end %>
+    <br>
 
-    <%= f.submit %>
-  <% end %>
-
-<%= button_to "Delete Profile", user_path(@current_user), method: :delete %>
+  <%= button_to "Delete Profile", user_path(@current_user), method: :delete, class: "btn btn-danger" %>
+</div>

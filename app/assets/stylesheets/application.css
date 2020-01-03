@@ -61,12 +61,42 @@ img.avatar {
   color: #0275d8;
 }
 
+.error_message {
+  color: red;
+}
+
+.index-container {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: space-around;
+  justify-content: left;
+}
+
+.index-img {
+  width:150px;
+  height:150px;
+  border-radius: 50%;
+}
+
+.index-item {
+  max-width: 180px;
+  border-radius: 25px;
+  padding: 10px;
+  text-align: center;
+}
+
 .likes {
   display: inline;
   font-weight: bold;
 }
 
 .likes-row {}
+
+.no-menu-wrapper {
+  padding-left: 15px;
+  max-width: 540px;
+  color:  rgba(248, 255, 229, 1);
+}
 
 .partial-wrapper {
   max-width: 540px;
@@ -111,3 +141,12 @@ img.avatar {
   padding-block-start: 50px;
 }
 
+#no-menu-content {
+  padding-block-start: 50px;
+  background: url(https://pixel.nymag.com/imgs/fashion/daily/2013/03/05/05-calvin-klein-dark-obsession-ad.w710.h473.2x.jpg) no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  overflow: hidden;
+  
+  
+}

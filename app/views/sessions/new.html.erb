@@ -1,22 +1,26 @@
-<h1>Welcome and Login</h1>
+<div class="no-menu-wrapper">
+<h1>Photo Obsession</h1>
 
 
-<% if flash[:messages] %>
-  <% flash[:messages].each do |message| %>
-    <div class="error_message">
-      <%= message %>
-    </div>
-  <% end %>
-<% end %>
-
-<%= form_with url: '/login' do |f| %>
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-
-    <%= f.submit "Login" %>
+  <% if flash[:messages] %>
+    <% flash[:messages].each do |message| %>
+      <div class="error_message">
+        <%= message %>
+      </div>
     <% end %>
+  <% end %>
 
-<%= link_to "Sign Up", new_user_path %>
+  <div class="form-group">
+    <%= form_with url: '/login' do |f| %>
+        <%= f.label :username %>
+        <%= f.text_field :username, class: "form-control" %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "form-control" %><br>
+
+        <%= f.submit "Login", class: "btn btn-outline-light" %>
+    <% end %>
+  </div>
+
+  <%= button_to "Sign Up", '/signup', method: :get, class: "btn btn-success" %>  
+</div>

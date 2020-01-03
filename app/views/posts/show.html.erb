@@ -3,5 +3,5 @@
 
 <%# byebug %>
 <% if @user == @current_user %>
-<%= button_to "Edit Post", edit_post_path(@post), method: :get %>
+  <%= button_to "Edit Post", edit_post_path(@post), method: :get, class: "btn btn-outline-primary" %>
 <% end %>
