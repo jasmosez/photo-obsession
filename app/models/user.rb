@@ -17,6 +17,11 @@ class User < ApplicationRecord
         Post.all.select {|p| p.user_id == self.id}  
     end
 
+    def sort_authored_posts
+        authored_posts = self.my_authored_posts
+        authored_posts.sort { |a, b| b.created_at <=> a.created_at }
+    end
+
     def my_idols_posts
         posts = []
         self.idols.each do |idol|

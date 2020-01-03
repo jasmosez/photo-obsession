@@ -1,6 +1,10 @@
 <h1>Welcome <%= @current_user.username %></h1>
 
-<% @posts.each do |p| %>
-       <%= render '/posts/item', :p => p %>
-       <%= render '/comments/comments_show', :p => p %>
+<% if @current_user.idols.none? %>
+       To begin seeing posts on your dashboard, obsess over some users!
+<% else %>
+       <% @posts.each do |p| %>
+              <%= render '/posts/item', :p => p %>
+              <%= render '/comments/comments_show', :p => p %>
+       <% end %>
 <% end %>
