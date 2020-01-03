@@ -50,6 +50,18 @@ class User < ApplicationRecord
         end
     end 
 
+    def boths
+        self.fans & self.idols
+    end
+
+    def fans_only
+        self.fans - self.boths | self.boths - self.fans
+    end
+
+    def idols_only
+        self.idols - self.boths | self.boths - self.idols
+    end
+
     # def common_idols
     #     results = []
     #     #byebug

@@ -29,6 +29,8 @@ class ApplicationController < ActionController::Base
             return users_path
         when "users#show"
             return user_path(instance)
+        when "users#obsessions"
+            return obsessions_path(instance)
         
         when "sessions#show"
             return dashboard_path
