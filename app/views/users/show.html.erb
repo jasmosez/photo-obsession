@@ -1,33 +1,37 @@
-<h1><%= @user.username %>'s Profile</h1>
+<div class="partial-wrapper">
+    <div class="user-profile-header">  
+        <%= image_tag(@user.avatar, class: "avatar-big") %>
+        <%= @user.username%>'s Profile
+    </div>
 
-<%# render edit profile button if this is the current user's show page %>
-<% if @user == @current_user %>
-    <%= button_to "Update Profile", edit_user_path(@current_user), method: :get %>
-<% end %>
 
-<%# count fans and idols %>
-<ul>
-    <li>Fans: <%= @user.fans.count %></li>    
-    <li>Idols: <%= @user.idols.count %></li>
-</ul>
+    <%# count fans and idols %>
+        <div>Fans: <%= @user.fans.count %></div>    
+        <div>Idols: <%= @user.idols.count %></div>
+    
+    <%# FOLLOW (OBESS) BUTTON NEEDS WORK!! %>
+    <% if session[:user_id] == @user.id %>
 
-<%# FOLLOW (OBESS) BUTTON NEEDS WORK!! %>
-<% if session[:user_id] == @user.id %>
+    <% elsif User.find(session[:user_id]).idols.include?(@user) %>
+        <%= button_to "Detach From", unfollow_user_path(@user), method: :post, class: "btn btn-danger" %>
+    <% else %>
+        <%= button_to "Obsess Over", follow_user_path(@user), method: :post, class: "btn btn-primary" %>
+    <% end %>
+    <br>
 
-<% elsif User.find(session[:user_id]).idols.include?(@user) %>
-    <%= button_to "Detach From", unfollow_user_path(@user), method: :post %>
-<% else %>
-    <%= button_to "Obsess Over", follow_user_path(@user), method: :post %>
-<% end %>
-
-<%# disply bio %>
-<p>Bio: <%= @user.bio %></p>
-
-<%# display user's posts %>
-<% @posts.each do |p| %>
-       <%= render '/posts/item', :p => p %>
-       <%= render '/comments/comments_show', :p => p %>
-       <br><hr>
-<% end %>
+    <%# disply bio %>
+    <p>Bio: <%= @user.bio %></p>
+    <%# render edit profile button if this is the current user's show page %>
+    <% if @user == @current_user %>
+        <%= button_to "Update Profile", edit_user_path(@current_user), method: :get, class: "btn btn-outline-primary" %>
+    <% end %>
+    <hr>
+    <%# display user's posts %>
+    <% @posts.each do |p| %>
+        <%= render 'item', :p => p %>
+        <%= render '/comments/comments_show', :p => p %>
+        <br><hr>
+    <% end %>
+</div>
 
 

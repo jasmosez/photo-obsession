@@ -25,6 +25,7 @@ Post.create(img_url: "https://ca.slack-edge.com/T02MD9XTF-UQJ2R94EA-0d4d26671dd9
 Post.create(img_url: "https://ca.slack-edge.com/T02MD9XTF-UNX1T44NQ-347b781241f1-512", user_id: u3.id, caption: Faker::Movies::Lebowski.quote)
 Post.create(img_url: "https://ca.slack-edge.com/T02MD9XTF-UPMCZ4DA9-97cc68f2f97d-512", user_id: u4.id, caption: Faker::Movies::Lebowski.quote)
 Post.create(img_url: "https://ca.slack-edge.com/T02MD9XTF-UQ32T8ZGA-1d8b246a8aff-512", user_id: u5.id, caption: Faker::Movies::Lebowski.quote)
+
 20.times do
     Post.create(img_url: Faker::LoremFlickr.image, user_id: User.all.sample.id, caption: Faker::Movies::Lebowski.quote)
 end

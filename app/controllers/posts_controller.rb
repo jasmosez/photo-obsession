@@ -3,10 +3,10 @@ class PostsController < ApplicationController
     before_action :find_post, only: [:show, :edit, :update, :destroy]
 
     def index
+
         # Establish default for sort_choice
         default = "Recent"
         
-
         # store sort_choice in session, if it exists
         # store default in session, if no session[sort_choice] exists
         # otherwise, just use what's already in session

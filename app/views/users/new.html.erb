@@ -1,19 +1,24 @@
-<h1>Sign Up!</h1>
+<div class="no-menu-wrapper">
 
-<% if flash[:messages] %>
-  <% flash[:messages].each do |message| %>
-    <div class="error_message">
-      <%= message %>
-    </div>
+  <h1>Sign Up</h1>
+
+  <% if flash[:messages] %>
+    <% flash[:messages].each do |message| %>
+      <div class="error_message">
+        <%= message %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
 
-<%= form_for @user do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username, required: true %><br>
-  <%= f.label :password %>
-  <%= f.password_field :password, required: true %><br>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation, required: true %><br>
-  <%= f.submit %>
-<% end %>
+  <div class="form-group">
+    <%= form_for @user do |f| %>
+      <%= f.label :username %>
+      <%= f.text_field :username, required: true, class: "form-control" %><br>
+      <%= f.label :password %>
+      <%= f.password_field :password, required: true, class: "form-control" %><br>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, required: true, class: "form-control" %><br>
+      <%= f.submit class: "btn btn-outline-light" %>
+    <% end %>
+  </div>
+</div>

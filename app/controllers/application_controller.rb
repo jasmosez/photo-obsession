@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     end
 
     def current_user
-        # User.find(session[:user_id])
+        User.find(session[:user_id])
     end
 
     # def last_view

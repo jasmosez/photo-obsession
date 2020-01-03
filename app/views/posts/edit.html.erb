@@ -1,9 +1,14 @@
-<h1>Edit Post for <%= @current_user.username %></h1>
+<div class="partial-wrapper">
+  <h1>Edit New Post for <%= @current_user.username %></h1>
 
-<%= form_for @post do |f| %>
-    <%= f.hidden_field(:user_id, value: @current_user.id) %>
-    <%= f.label :caption %>
-    <%= f.text_field :caption %><br>
-    <%= f.submit "Update Post!" %>
-  <% end %>
-<%= button_to "Delete Post", post_path(@post), method: :delete %>
+  <div class="form-group">
+    <%= form_for @post do |f| %>
+        <%= f.hidden_field(:user_id, value: @current_user.id) %>
+        <%= f.label :caption %>
+        <%= f.text_field :caption, class: "form-control" %><br>
+        <%= f.submit "Update Post!", class: "btn btn-outline-primary" %>
+      <% end %>
+    </div>
+    <br>
+    <%= button_to "Delete Post", post_path(@post), method: :delete, class: "btn btn-danger" %>
+  </div>

@@ -24,7 +24,9 @@ class UsersController < ApplicationController
     end
 
     def create
-        user = User.create(user_params)
+        hash = user_params
+        hash[:avatar] = Faker::Avatar.image
+        user = User.create(hash)
         if user.valid?
             redirect_to login_path
         else
@@ -67,7 +69,7 @@ class UsersController < ApplicationController
     private
      
     def user_params
-        params.require(:user).permit(:username, :password, :password_confirmation, :bio)
+        params.require(:user).permit(:username, :password, :password_confirmation, :bio, :avatar)
     end
 
     def find_current_user

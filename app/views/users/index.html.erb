@@ -1,52 +1,54 @@
-<h1> USER INDEX </h1>
+<div class="partial-wrapper">
+    <h1> Fans & Idols </h1>
 
-<%# LIST USERS %>
-<ul>
-    <% @users.each do |u| %>
-            <li><%= link_to u.username, user_path(u) %> 
+    <div class="index-container">
+        <%# LIST USERS %>
+        <% @users.each do |u| %>
+            <div class="index-item">
+                <%= link_to(image_tag(u.avatar, class: "index-img"), user_path(u)) %><br>
+                <%= link_to u.username, user_path(u) %><br> 
 
-        <%#  FOLLOW/UNFOLLOW BUTTON %>
-            <% if session[:user_id] == u.id %>
-
-            <% elsif User.find(session[:user_id]).idols.include?(u) %>
-            <%= button_to "Detach From", unfollow_user_path(u), method: :post %>
-            <% else %>
-            <%= button_to "Obsess Over", follow_user_path(u), method: :post %>
-            <% end %></li>
-
-        <%# TOTAL NO. OF LIKES%>
-            Total likes: 
-            <%= u.total_likes %><br>
+                <%#  FOLLOW/UNFOLLOW BUTTON %>
+                <% if session[:user_id] == u.id %>
+                    <%= button_to "Edit Profile", edit_user_path(u), method: :get, class: "btn btn-outline-primary" %>
+                <% elsif User.find(session[:user_id]).idols.include?(u) %>
+                    <%= button_to "Detach From", unfollow_user_path(u), method: :post, class: "btn btn-danger" %>
+                <% else %>
+                    <%= button_to "Obsess Over", follow_user_path(u), method: :post, class: "btn btn-primary" %>
+                <% end %>
             
+                <%# TOTAL POSTS %>
+                Posts:
+                <%= u.total_posts %><br>
+                
+                <%# TOTAL NO. OF LIKES%>
+                Likes Received: 
+                <%= u.total_likes %><br>
+                
+                <%# MOST LIKED POST %>
+                <% if u.most_liked_post == nil %>
+                    No posts, no likes!
+                    <br>
+                <% else %>
+                    <%= link_to "Most Liked", post_path(u.most_liked_post) %><br>
+                <% end %>
 
-        <%# TOTAL POSTS %>
-            Total posts:
-            <%= u.total_posts %><br>
-            
 
-        <%# MOST LIKED POST %>
-        <% if u.most_liked_post == nil %>
-        No posts to like!
-        <br>
-        <% else %>
-        <%= link_to "Most liked Post", post_path(u.most_liked_post) %><br>
+                <%# MOST COMMENTED ON POST %>
+                <% if u.most_liked_post == nil %>
+                    No comments!
+                    <br>
+                <% else %>
+                    <%= link_to "Most Commented", post_path(u.most_commented_post) %><br>
+                    <br>
+                <% end %>
+
+                <%# SHARED IDOLS %>
+                <%# u.common_idols %>
+            </div>
         <% end %>
-
-
-        <%# MOST COMMENTED ON POST %>
-        <% if u.most_liked_post == nil %>
-        No posts to comment on!
-        <br>
-        <% else %>
-        <%= link_to "Most Commented On Post", post_path(u.most_commented_post) %><br>
-        <br>
-        <% end %>
-
-        <%# SHARED IDOLS %>
-        <%# u.common_idols %>
-    <% end %>
-
-</ul>
+    </div>
+</div>
 
 
 

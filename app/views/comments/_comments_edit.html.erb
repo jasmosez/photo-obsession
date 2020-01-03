@@ -1,21 +1,32 @@
-<%# SHOW COMMENT THREAD %>
-<%# Render form for current comment, if it was created by current_user %>
-<% @post.comments.each do |c| %>
-  <% if c.id == @comment.id && c.user.id == @current_user.id %>
-    <li>
-      <%= form_for(c, method: "PATCH", url: comment_path(c)) do |f| %>
-          <%= f.hidden_field(:post_id, value: @post.id) %>
-          <%= f.hidden_field(:user_id, value: @current_user.id) %>
-          <%= f.text_area :content %>
-          <%= f.submit "Edit Comment" %>
-      <% end %>
-      <%= button_to("Delete Comment", {action: "destroy"}, {method: :delete}) %>
-    </li>
-  <% else %>
-    <li>
-      <%= "#{c.user.username} said #{c.content}" %>
-    </li>
-  <% end %>
-<% end %>
 
-<%# DON'T INCLUDE "ADD NEW COMMENT" FUNCTIONALITY %>
+<%# SHOW COMMENT THREAD %>
+<div class="partial-wrapper">
+    <div><%# pluralize(p.comments.count, "comment") %></div>
+    <% p.comments.each do |c| %>
+        <div>
+            <% if c.id == @comment.id && c.user.id == @current_user.id %>            
+                <div style="font-weight:bold;">
+                    <%= link_to c.user.username, user_path(c.user) %>
+                    <%= "said #{c.content}" %>
+                </div>
+            <% else %>
+                <div>
+                    <%= link_to c.user.username, user_path(c.user) %>
+                    <%= "said #{c.content}" %>
+                </div>
+            <% end %>
+        </div>
+    <% end %>
+    <br>
+    <%# ADD NEW COMMENT %>
+    <div>
+        <%= form_for(@comment, method: "PATCH", url: comment_path(@comment)) do |f| %>
+            <%= f.hidden_field(:post_id, value: p.id) %>
+            <%= f.hidden_field(:user_id, value: @current_user.id) %>
+            <%= f.text_area :content, required: true, class: "comment-box" %>
+            <%= f.submit "Edit Comment", class: "btn btn-outline-primary" %>
+        <% end %>
+        <%= button_to("Delete Comment", {action: "destroy"}, {method: :delete, class: "btn btn-danger"}) %>
+        <br>
+    </div>
+</div>
