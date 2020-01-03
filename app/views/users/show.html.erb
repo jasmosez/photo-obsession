@@ -6,9 +6,8 @@
 
 
     <%# count fans and idols %>
-        <div>Fans: <%= @user.fans.count %></div>    
-        <div>Idols: <%= @user.idols.count %></div>
-    
+    <%= button_to "#{@user.fans.count} Fans | #{@user.idols.count} Idols", obsessions_path(@user), method: :get, class: "btn btn-outline-primary" %>
+        
     <%# FOLLOW (OBESS) BUTTON NEEDS WORK!! %>
     <% if session[:user_id] == @user.id %>
 

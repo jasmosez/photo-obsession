@@ -56,3 +56,4 @@ gem 'bootstrap'
 gem 'jquery-rails'
 
 gem 'faker'
+gem 'rest-client'

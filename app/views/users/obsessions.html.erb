@@ -1,0 +1,37 @@
+<div class="partial-wrapper">
+    <h1> <%= @user.username %>'s Obsessions </h1>
+
+    <%# LIST IDOLS %>
+    <% if @idols.none?%>     
+    <% else %>
+      <h2> <%= @user.username %>'s Idols </h2>
+      <div class="index-container">
+        <% @idols.each do |item| %>
+            <%= render 'index_item', :item => item %>
+        <% end %>
+      </div>
+    <% end %>
+
+
+    <%# BOTHS IDOLS %>
+    <% if @boths.none?%>     
+    <% else %>
+      <h2> Mutual Obsessions </h2>
+      <div class="index-container">
+          <% @boths.each do |item| %>
+            <%= render 'index_item', :item => item %> 
+          <% end %>
+      </div>
+    <% end %>
+
+    <%# LIST FANS %>
+    <% if @fans.none?%>     
+    <% else %>
+      <h2> <%= @user.username %>'s Fans </h2>
+      <div class="index-container">
+          <% @fans.each do |item| %>
+              <%= render 'index_item', :item => item %>
+          <% end %>
+      </div>
+    <% end %>
+</div>

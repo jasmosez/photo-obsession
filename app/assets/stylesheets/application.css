@@ -104,6 +104,11 @@ img.avatar {
 
 .photo {
   /* background-color: rgba(255, 0, 0, .1); */
+  /* height: 540px; */
+  /* overflow: hidden; */
+  width: auto;
+  height: auto;
+  max-width: 540px;
   max-height: 540px;
 }
 

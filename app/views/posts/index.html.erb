@@ -12,6 +12,7 @@
 </div>
 
 <% @posts.each do |p| %>
-       <%= render '/posts/item', :p => p %>
-       <%= render '/comments/comments_show', :p => p %>
+      <%= render '/posts/item', :p => p %>
+      <%= render '/comments/comments_show', :p => p %>
+       
 <% end %>

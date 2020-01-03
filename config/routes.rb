@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   post '/signup', to: "users#create"
   post '/users/:id/follow', to: "users#follow", as: "follow_user"
   post '/users/:id/unfollow', to: "users#unfollow", as: "unfollow_user"
-  
+  get '/users/:id/obsessions', to: 'users#obsessions', as: "obsessions"
   
   get '/', to: "sessions#show", as: 'dashboard'
   get '/login', to: "sessions#new"

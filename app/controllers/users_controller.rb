@@ -7,6 +7,7 @@ class UsersController < ApplicationController
         session[:last_view] = "users#index"
         session[:last_view_id] = nil
         @users = User.all 
+
     end
     
     def new
@@ -64,6 +65,15 @@ class UsersController < ApplicationController
         @user = User.find(params[:id]) 
         Obsession.find_by(fan_id: current_user, idol_id: @user.id).destroy
         redirect_to redirect_helper
+    end
+
+    def obsessions
+        @user = User.find(params[:id])
+        session[:last_view] = "users#obsessions"
+        session[:last_view_id] = @user.id
+        @boths = @user.boths
+        @fans = @user.fans_only
+        @idols = @user.idols_only
     end
 
     private

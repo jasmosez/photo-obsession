@@ -1,0 +1,39 @@
+<div class="index-item">
+  <%= link_to(image_tag(item.avatar, class: "index-img"), user_path(item)) %><br>
+  <%= link_to item.username, user_path(item) %><br> 
+  <%# byebug %>
+  <%#  FOLLOW/UNFOLLOW BUTTON %>
+  <% if session[:user_id] == item.id %>
+      <%= button_to "Edit Profile", edit_user_path(item), method: :get, class: "btn btn-outline-primary" %>
+  <% elsif User.find(session[:user_id]).idols.include?(item) %>
+      <%= button_to "Detach From", unfollow_user_path(item), method: :post, class: "btn btn-danger" %>
+  <% else %>
+      <%= button_to "Obsess Over", follow_user_path(item), method: :post, class: "btn btn-primary" %>
+  <% end %>
+
+  <%# TOTAL POSTS %>
+  Posts:
+  <%= item.total_posts %><br>
+  
+  <%# TOTAL NO. OF LIKES%>
+  Likes Received: 
+  <%= item.total_likes %><br>
+  
+  <%# MOST LIKED POST %>
+  <% if item.most_liked_post == nil %>
+      No posts, no likes!
+      <br>
+  <% else %>
+      <%= link_to "Most Liked", post_path(item.most_liked_post) %><br>
+  <% end %>
+
+
+  <%# MOST COMMENTED ON POST %>
+  <% if item.most_liked_post == nil %>
+      No comments!
+      <br>
+  <% else %>
+      <%= link_to "Most Commented", post_path(item.most_commented_post) %><br>
+      <br>
+  <% end %>
+</div>
